@@ -1,0 +1,47 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\author{Andreas Sandø Krogen}
+\date{\today}
+\title{Alternativ organisering av dokumentet\\(og andre triks)}
+
+\begin{document}
+\maketitle
+\section*{Hvordan splitte opp dokumentet i flere filer}
+Etter hvert som man jobber med større dokumenter kan ting fort bli uoversiktlige dersom
+alt ligger i samme fil. Det kan derfor lønne seg å skrive ulike deler i sine egne \texttt{*.tex}-filer. Disse kan så hentes inn i et hoveddokument ved hjelp av kommandoen \texttt{\textbackslash input\{filnavn\}}, som laster inn innholdet fra filen
+\texttt{filnavn.tex} og putter det direkte inn i dokumentet ved \texttt{\textbackslash input}.
+
+Eksempel: Vi har to filer, \texttt{del1.tex} og \texttt{del2.tex}, som vi ønsker å laste inn i dette dokumentet. Merk at vi ikke trenger å legge til filendelsen når vi bruker \texttt{\textbackslash input}.
+
+\input{del1}
+\input{del2}
+
+~\\
+Dette gir oss også fordelen at flere personer kan jobbe på hver sin del av dokumentet uavhengig av de andre.
+
+\section*{Hvordan sette innstillinger som bare gjelder i en begrenset del av dokumentet}
+Noen ganger ønsker man å endre på innstillinger for en mindre del av dokumentet. Dette kan f.eks. være å midlertidig endre på tekstformateringen. Den tungvinte måten å gjøre dette på er å endre innstillingene rett før den aktuelle delen, skrive innholdet i delen og til slutt sette innstillingene tilbake til det de var. En bedre måte å gjøre dette på er ved bruk av krøllparenteser. Man skriver kommandoene som endrer innstillingene og legger til teksten man ønsker mellom et par krøllparenteser: \texttt{\{\textbackslash innstilling1 \textbackslash innstilling2 (tekst og innhold)\}}. Da vil innstillingene kun tre i kraft innenfor krøllparentesene.
+
+Eksempel: Vi ønsker å midlertidig endre skriftstørrelse og sette teksten i kursiv.
+{\Large \it Dette er tekst på innsiden av krøllparentesene.}
+Dette er tekst utenfor krøllparentesene.
+
+\section*{Hvordan tilpasse størrelsen til parenteser i matematiske uttrykk}
+Matematiske uttrykk varierer i størrelse og ofte ønsker man å omslutte et uttrykk med parenteser, slik som når man opphøyer en brøk i noe. Da er det viktig å kunne tilpasse størrelsen på parentesene slik at de passer det matematiske uttrykket.
+Et eksempel på dårlig tilpassede parenteser:
+
+\begin{equation}
+\sum_{n = 1}^\infty (\frac{1}{2})^n = 1
+\end{equation}
+
+Dette er vanskelig å lese og man kan nesten få lyst til å stikke ut øynene sine. Det finnes heldigvis en måte å automatisk tilpasse størrelsen til parentesene på ved hjelp av kommandoene \texttt{\textbackslash left} og \texttt{\textbackslash right}. Man skriver \texttt{\textbackslash left(} for den venstre parentesen og \texttt{\textbackslash right)} for den høyre. Da blir den forrige ligningen mye penere.
+
+\begin{equation}
+\sum_{n = 1}^\infty \left(\frac{1}{2}\right)^n = 1
+\end{equation}
+
+Dette fungerer også for andre typer parenteser, som firkantparenteser og krøllparenteser, bare for å nevne noen.
+
+\end{document}
